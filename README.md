@@ -1,40 +1,117 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+# Healthcare Consultation Assistant 🏥
 
-## Getting Started
+An AI-powered SaaS application that helps healthcare professionals generate professional consultation summaries, action items, and patient communications from their clinical notes.
 
-First, run the development server:
+<img width="3986" height="1162" alt="architectural-diagram" src="https://github.com/user-attachments/assets/f88c01f3-75ba-413d-96bf-d43f515a5150" />
 
+## 🚀 Features
+
+- **AI-Powered Summaries**: Transforms doctor's notes into structured medical summaries
+- **Patient Communications**: Generates patient-friendly email drafts automatically
+- **Action Items**: Extracts and formats next steps for healthcare providers
+- **Real-time Streaming**: See AI-generated content appear in real-time
+- **Enterprise Auth**: Secure authentication with Clerk and JWT verification
+- **Subscription Management**: Integrated billing and subscription tiers
+- **Production Ready**: Deployed on AWS with monitoring and health checks
+
+## 🛠️ Tech Stack
+
+**Frontend:**
+- Next.js 15 (Pages Router)
+- TypeScript
+- Tailwind CSS
+- React Markdown
+
+**Backend:**
+- FastAPI (Python)
+- OpenAI GPT API
+- Pydantic for data validation
+
+**Authentication & Billing:**
+- Clerk (Auth, JWT, Subscriptions)
+
+**Infrastructure:**
+- Docker (containerization)
+- AWS App Runner (hosting)
+- Amazon ECR (container registry)
+- CloudWatch (logging & monitoring)
+
+**Deployment:**
+- Vercel (development)
+- AWS (production)
+
+## 📋 Prerequisites
+
+- Node.js 18+
+- Python 3.12+
+- Docker Desktop
+- AWS Account
+- Clerk Account
+- OpenAI API Key
+
+## 🏃 Quick Start
+
+### 1. Clone the repository
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/YOUR_USERNAME/YOUR_REPO_NAME.git
+cd YOUR_REPO_NAME
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Install dependencies
+```bash
+# Frontend
+npm install
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+# Backend (optional for local testing)
+pip install -r requirements.txt
+```
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+### 3. Set up environment variables
+Create `.env.local`:
+```bash
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_...
+CLERK_SECRET_KEY=sk_test_...
+CLERK_JWKS_URL=https://...
+OPENAI_API_KEY=sk-proj-...
+```
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+### 4. Run development server
+```bash
+# Using Vercel CLI (recommended - runs both frontend and Python API)
+vercel dev
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+# Or just frontend
+npm run dev
+```
 
-## Learn More
+Visit `http://localhost:3000`
 
-To learn more about Next.js, take a look at the following resources:
+## 🐳 Docker Deployment
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
+### Build the container
+```bash
+docker build \
+  --build-arg NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY="$NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY" \
+  -t consultation-app .
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Run locally
+```bash
+docker run -p 8000:8000 \
+  -e CLERK_SECRET_KEY="$CLERK_SECRET_KEY" \
+  -e CLERK_JWKS_URL="$CLERK_JWKS_URL" \
+  -e OPENAI_API_KEY="$OPENAI_API_KEY" \
+  consultation-app
+```
 
-## Deploy on Vercel
+## ☁️ AWS Deployment
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+See [deployment guide](./docs/AWS_DEPLOYMENT.md) for detailed instructions.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+**Quick steps:**
+1. Push image to ECR
+2. Create App Runner service
+3. Configure environment variables
+4. Deploy!
+
+## 📁 Project Structure
