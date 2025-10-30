@@ -3,6 +3,8 @@
 An AI-powered SaaS application that helps healthcare professionals generate professional consultation summaries, action items, and patient communications from their clinical notes.
 
 <img width="3986" height="1162" alt="architectural-diagram" src="https://github.com/user-attachments/assets/f88c01f3-75ba-413d-96bf-d43f515a5150" />
+<img width="1910" height="990" alt="Screenshot 2025-10-30 at 11 48 43 (2)" src="https://github.com/user-attachments/assets/a89cf899-f963-4605-a53f-e23c21cdf587" />
+
 
 ## 🚀 Features
 
